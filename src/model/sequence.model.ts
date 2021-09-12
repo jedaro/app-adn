@@ -1,4 +1,3 @@
-import { Collection } from 'mongoose';
 import {mongoose} from '../db/database'
 
 const SequenceSchema = new mongoose.Schema(

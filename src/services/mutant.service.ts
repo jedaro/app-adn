@@ -1,8 +1,12 @@
 
 import {Sequence} from '../model/sequence.model'
-// is Mutant
+import {Logger} from 'tslog'
 
-export const checkSequenceService = (sequence:String[]) => {
+const log = new Logger({name: 'loggerApp'})
+
+// Verifica la secuencia de adn para saber si es mutante
+export const checkSequenceService = (sequence:Array<String>) => {
+    let matrix: [][];
 
     return true;
 
@@ -10,10 +14,15 @@ export const checkSequenceService = (sequence:String[]) => {
 
 // Save to dabatabase
 export const saveDataService = async (sequence:Array<String>, isMutant: boolean) => {
-   new Sequence({
-       sequence,
-       isMutant
-   }).save();
+   try {
+    new Sequence({
+        sequence,
+        isMutant
+    }).save();
+    
+   } catch (error) {
+       log.error(error)
+   }
  
 }
 
@@ -36,6 +45,7 @@ export const getStatsService = async () => {
 
      res.count_human_dna = count_human_dna
      res.count_mutant_dna = count_mutant_dna
+     log.info('Stats api: ',res)
 
     return res;
 

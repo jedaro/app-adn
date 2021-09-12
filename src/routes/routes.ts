@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
    res.send('API Rest Mutantes').status(200);
 });
-router.post('/isMutant', controller.isMutant);
+router.post('/mutant', controller.isMutant);
 router.get('/stats', controller.getStats);
 
 export = router;
