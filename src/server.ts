@@ -3,6 +3,9 @@ import routes from './routes/routes';
 import morgan from 'morgan';
 import http from 'http';
 import * as dotenv from "dotenv";
+var swaggerUi = require('swagger-ui-express'),
+    swaggerDocument = require('../api/swagger.json');
+
 
 require('./db/database')
 
@@ -13,7 +16,7 @@ const router: Express = express();
 router.use(morgan('dev'));
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
-
+router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 router.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');

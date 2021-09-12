@@ -9,7 +9,6 @@ export const checkSequenceService = (sequence:String[]) => {
 }
 
 // Save to dabatabase
-
 export const saveDataService = async (sequence:Array<String>, isMutant: boolean) => {
    new Sequence({
        sequence,
