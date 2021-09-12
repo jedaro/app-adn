@@ -1,0 +1,9 @@
+Resources:
+  appadn:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/db/database.connectToDatabase
+      CodeUri: /Users/jedaro/Documents/PROYECTOS/MercadoLibre/app-adn
+      Runtime: nodejs12.x
+      Environment:
+        Variables: {}

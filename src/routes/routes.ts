@@ -1,0 +1,12 @@
+import express from 'express';
+import controller from '../controllers/mutant.controller';
+const router = express.Router();
+
+
+router.get('/', (req, res) => {
+   res.send('API Rest Mutantes').status(200);
+});
+router.post('/isMutant', controller.isMutant);
+router.get('/stats', controller.getStats);
+
+export = router;
