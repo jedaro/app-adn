@@ -10,21 +10,24 @@ import {
 // Valida si una secuencia es valida y si es de un mutante
 const isMutant = async (req: Request, res: Response, next: NextFunction) => {
   // Validate sequence
-  let sequence = req.body;
-  if (!validateAdn(sequence)) {
+  let sequence = req.body.dna ? req.body.dna : "[]";
+  let validation = validateAdn(sequence);
+  if (!validation.valid) {
     res.status(400).json({
       code: 400,
-      message: "Las secuencias de adn recibida no son validas",
+      message: validation.message,
     });
   }
 
   let isMutant = checkSequenceService(sequence);
+  
   if (isMutant) {
     saveDataService(sequence, true);
     return res.status(200).json({
       message: "true",
     });
   } else {
+    saveDataService(sequence, false);
     return res.status(403);
   }
 };

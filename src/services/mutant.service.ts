@@ -2,12 +2,15 @@
 import {Sequence} from '../model/sequence.model'
 import {Logger} from 'tslog'
 
-const log = new Logger({name: 'loggerApp'})
+const log = new Logger({name: 'app-adn: service'})
 
-// Verifica la secuencia de adn para saber si es mutante
+// Verifica la secuencia dna para encontrar patron 
 export const checkSequenceService = (sequence:Array<String>) => {
-    let matrix: [][];
+    let matrix: [][]
+    let isMutant: boolean
 
+
+    
     return true;
 
 }
