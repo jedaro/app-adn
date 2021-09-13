@@ -8,7 +8,7 @@ const log = new Logger({name: 'app-adn: validate'})
  */
 export const validateAdn = (sequence: Array<String>) => {
   let isValid = { message:"", valid:true };
-  let patter = ["A", "T", "C", "G"];
+  let pattern = ["A", "T", "C", "G"];
   
   if (sequence.toString() == "[]" || sequence.length == 0 || sequence.length > 6) {
     isValid.message = "Secuencia de dna vacia"
@@ -19,9 +19,9 @@ export const validateAdn = (sequence: Array<String>) => {
     sequence.forEach((str) => {
       for (let i = 0; i < str.length; i++) {
         const character = str.charAt(i);
-        if (!patter.includes(character)) {
-          log.error("La sequencia " +str +"no es valida. Solo debe contener los caractertes" +patter);
-          isValid.message = "La sequencia " +str+" no es valida. Solo debe contener los caractertes "+patter
+        if (!pattern.includes(character)) {
+          log.error("La sequencia " +str +"no es valida. Solo debe contener los caractertes" +pattern);
+          isValid.message = "La sequencia " +str+" no es valida. Solo debe contener los caractertes "+pattern
           isValid.valid = false;
         }
       }

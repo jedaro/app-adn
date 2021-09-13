@@ -20,14 +20,14 @@ const isMutant = async (req: Request, res: Response, next: NextFunction) => {
   }
 
   let isMutant = checkSequenceService(sequence);
-  
+
   if (isMutant) {
-    saveDataService(sequence, true);
+    //saveDataService(sequence, true);
     return res.status(200).json({
       message: "true",
     });
   } else {
-    saveDataService(sequence, false);
+    //saveDataService(sequence, false);
     return res.status(403);
   }
 };
