@@ -21,7 +21,7 @@ export const checkSequenceService = (sequence: Array<String>) => {
   }
 
   // Verificacion vertical
-  let matrix = getMatrix(sequence);
+  //let matrix = getMatrix(sequence);
   for (let i = 0; i < sequence.length; i++) {
     let strVertical = "";
     for (let j = 0; j < sequence[i].length; j++) {
@@ -35,7 +35,6 @@ export const checkSequenceService = (sequence: Array<String>) => {
     }
   }
 
-  // Verificacion diagonal
 
 
   return ismutant;
@@ -67,17 +66,21 @@ export const getStatsService = async () => {
   };
   let sequences = await Sequence.find({});
   sequences.forEach((seq) => {
+   log.info("-------- "+seq)
     if (JSON.parse(JSON.stringify(seq)).isMutant) {
-      count_mutant_dna = count_human_dna + 1;
+      count_mutant_dna++;
     } else if (!JSON.parse(JSON.stringify(seq)).isMutant) {
-      count_human_dna = count_human_dna + 1;
+      count_human_dna++;
     }
   });
 
   res.count_human_dna = count_human_dna;
   res.count_mutant_dna = count_mutant_dna;
-  res.ratio = (count_mutant_dna / count_human_dna)
-  log.info("Stats api: ", res);
+  if (count_human_dna > 0) {
+    res.ratio = Math.round(count_mutant_dna / count_human_dna)
+  } else {
+    res.ratio = 0
+  }
 
   return res;
 };
