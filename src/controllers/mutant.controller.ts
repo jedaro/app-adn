@@ -24,10 +24,10 @@ const isMutant = async (req: Request, res: Response, next: NextFunction) => {
    
   if (isMutant) {
     saveDataService(sequence, true);
-    return res.status(200);
+    return res.status(200).end();
   } else {
     saveDataService(sequence, false);
-    return res.status(403);
+    return res.status(403).end();
   }
 };
 
