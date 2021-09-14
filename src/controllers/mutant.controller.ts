@@ -23,9 +23,7 @@ const isMutant = async (req: Request, res: Response, next: NextFunction) => {
 
   if (isMutant) {
     //saveDataService(sequence, true);
-    return res.status(200).json({
-      message: "true",
-    });
+    return res.status(200);
   } else {
     //saveDataService(sequence, false);
     return res.status(403);
