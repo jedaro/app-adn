@@ -21,7 +21,6 @@ describe('Unit test mutant.service', async() => {
         before("vars", () => {
           let responseGet = dataMock;
           AWSMock.mock("DynamoDB", "query", (params, callback) => {
-            console.log("Mock get rows from dynamodb");
             return callback(null, responseGet);
           });
         });

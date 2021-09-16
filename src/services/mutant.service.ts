@@ -66,7 +66,6 @@ export const getStatsService = async () => {
   };
   let sequences = await Sequence.find({});
   sequences.forEach((seq) => {
-   log.info("-------- "+seq)
     if (JSON.parse(JSON.stringify(seq)).isMutant) {
       count_mutant_dna++;
     } else if (!JSON.parse(JSON.stringify(seq)).isMutant) {
