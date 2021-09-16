@@ -59,15 +59,23 @@ describe('Unit test mutant.service', async() => {
 
     });
 
-    describe('Test saveDataService', () => {
-        let sequence = ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]
-        let isMutant = true
-        saveDataService(sequence, isMutant).then(res => {
-            console.log(res)
-            expect(res).to.be.true
-        })
-
-    })
+    describe("Test saveDataService", () => {
+      it("saved", () => {
+        let sequence = [
+          "ATGCGA",
+          "CAGTGC",
+          "TTATGT",
+          "AGAAGG",
+          "CCCCTA",
+          "TCACTG",
+        ];
+        let isMutant = true;
+        saveDataService(sequence, isMutant).then((res) => {
+          console.log(res);
+          expect(res).to.be.true;
+        });
+      });
+    });
    
 
 
