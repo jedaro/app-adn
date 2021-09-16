@@ -20,7 +20,7 @@ const apiDocument = {
         description: 'Local Server',
       },
       {
-        url: 'https://api.mysite.com',
+        url: 'https://pivotal-sprite-326117.rj.r.appspot.com/',
         description: 'Production Server',
       },
     ],
