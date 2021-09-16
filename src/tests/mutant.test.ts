@@ -58,7 +58,7 @@ describe('Unit test mutant.service', async() => {
 
     });
 
-   /* describe("Test saveDataService", () => {
+  /* describe("Test saveDataService", () => {
       it("saved", () => {
         let sequence = [
           "ATGCGA",
@@ -86,12 +86,22 @@ describe("Unit test mutant.controller", () => {
         .post('/mutant')
         .send({dna:[]})
         .end((res, err) => {
-            console.log(err)
-            expect(res).to.have.property('status')
+            expect(err).to.have.status(400)
             done()
         })
 
     })
+
+    it('Test mutant error', (done) => {
+      chai.request(server)
+      .post('/mutant')
+      .send({dna:["ATGCGJ","CTGTJA","GACGAG","ATGCGA","CAGACA","ATGCGA"]})
+      .end((res, err) => {
+          expect(err).to.have.status(400)
+          done()
+      })
+
+  })
 })
 
 

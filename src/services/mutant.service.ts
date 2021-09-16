@@ -83,7 +83,7 @@ export const getStatsService = async () => {
 
   return res;
 };
-
+/*
 const getMatrix = (sequence: Array<String>) => {
   let matrix = new Array(6);
   for (var i = 0; i < 6; i++) {
@@ -96,4 +96,4 @@ const getMatrix = (sequence: Array<String>) => {
     }
   }
   return matrix;
-};
+};*/
