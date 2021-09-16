@@ -1,24 +1,23 @@
-import express, { Express } from 'express';
+import express from 'express';
 import routes from './routes/routes';
 import morgan from 'morgan';
 import http from 'http';
 import * as dotenv from "dotenv";
 import swaggerUi from 'swagger-ui-express';
 import { apiDocument } from './api/documentation';
-
-
 require('./db/database')
 
 dotenv.config();
 
-const router: Express = express();
+const app = express();
 
-router.use(morgan('dev'));
-router.use(express.urlencoded({ extended: false }));
-router.use(express.json());
-router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(apiDocument))
 
-router.use((req, res, next) => {
+app.use(morgan('dev'));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(apiDocument))
+
+app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'origin, X-Requested-With,Content-Type,Accept, Authorization');
     if (req.method === 'OPTIONS') {
@@ -29,10 +28,10 @@ router.use((req, res, next) => {
 });
 
 
-router.use('/', routes);
+app.use('/', routes);
 
 // Errors
-router.use((req, res, next) => {
+app.use((req, res, next) => {
     const error = new Error('not found');
     return res.status(404).json({
         message: error.message
@@ -40,7 +39,7 @@ router.use((req, res, next) => {
 });
 
 // Server
-const httpServer = http.createServer(router);
+const httpServer = http.createServer(app);
 const PORT: any = process.env.PORT ?? 3001;
 httpServer.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));
 

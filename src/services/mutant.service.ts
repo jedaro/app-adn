@@ -76,7 +76,7 @@ export const getStatsService = async () => {
   res.count_human_dna = count_human_dna;
   res.count_mutant_dna = count_mutant_dna;
   if (count_human_dna > 0) {
-    res.ratio = Math.round(count_mutant_dna / count_human_dna)
+    res.ratio = (count_mutant_dna / count_human_dna)
   } else {
     res.ratio = 0
   }

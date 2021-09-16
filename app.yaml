@@ -1,0 +1,9 @@
+
+runtime: nodejs16
+
+env_variables:
+  URI: "mongodb+srv://mutant:mutant2020@cluster0.kp49w.mongodb.net/mutantsdb?retryWrites=true&w=majority"
+  NAME_DB: "mutantsdb"
+  NAME_COLLECTION: "sequence"
+  NODE_ENV: "development"
+  MONGO_URI_TEST: "mongodb+srv://mutant:mutant2020@cluster0.kp49w.mongodb.net/test?retryWrites=true&w=majority"
