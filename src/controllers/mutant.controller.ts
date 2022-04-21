@@ -22,10 +22,16 @@ const isMutant = async (req: Request, res: Response, next: NextFunction) => {
   let isMutant = checkSequenceService(sequence);
   if (isMutant) {
     saveDataService(sequence, true);
-    return res.status(200).end();
+    return res.status(200).json({
+      code: 200,
+      message: "OK",
+    }).end();
   } else {
     saveDataService(sequence, false);
-    return res.status(403).end();
+    return res.status(403).json({
+      code: 400,
+      message: "Forbiden",
+    }).end();
   }
 };
 

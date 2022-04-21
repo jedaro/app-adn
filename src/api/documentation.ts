@@ -21,7 +21,7 @@ const apiDocument = {
       },
       {
         url: 'https://pivotal-sprite-326117.rj.r.appspot.com/',
-        description: 'Production Server',
+        description: 'Production Server (Google)',
       },
     ],
     tags: [{ name: 'mutant'}],

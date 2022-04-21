@@ -65,6 +65,7 @@ export const getStatsService = async () => {
     ratio
   };
   let sequences = await Sequence.find({});
+  console.log(JSON.stringify(sequences))
   sequences.forEach((seq) => {
     if (JSON.parse(JSON.stringify(seq)).isMutant) {
       count_mutant_dna++;

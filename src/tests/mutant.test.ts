@@ -1,46 +1,50 @@
-import * as AWSMock from 'aws-sdk-mock';
-import AWS from 'AWS-sdk'
 import chai from 'chai'
 import chaiHttp from 'chai-http'
 import 'mocha';
 import server from '../server'
 import { dataMock } from './utilsTest';
-import {checkSequenceService, getStatsService, saveDataService} from '../services/mutant.service';
+import * as service from '../services/mutant.service';
 import dotenv from "dotenv";
-import { get } from '../routes/routes';
-dotenv.config();
+import sinon from 'sinon'
+import sinonChai from 'sinon-chai';
+import  mongoose  from 'mongoose';
+import { Sequence } from '../model/sequence.model';
 
+
+require('sinon-mongo')
+
+dotenv.config();
+process.env.NODE_ENV = "testing"
 let expect = chai.expect
 chai.use(chaiHttp);
+chai.use(sinonChai)
+
+const sandbox = sinon.createSandbox();
 
 
-describe('Unit test mutant.service', async() => {
 
-    describe('Test getStatsService ok', () => {
+describe('Unit test mutant.service', () => {
 
-        before("vars", () => {
-          let responseGet = dataMock;
-          AWSMock.mock("DynamoDB", "query", (params, callback) => {
-            return callback(null, responseGet);
-          });
-        });
+    describe("Test getStatsService ok", () => {
 
-        after(() => {
-          AWSMock.restore("DynamoDB");
-        });
+      beforeEach(() => {
+    
 
-        it("Get stats", async (done) => {
-            getStatsService().then((res) =>{
-             expect(res).to.be.not.empty
-            });
+      })
 
-           done();
-        });
+      afterEach(() => {
+        sandbox.restore();
+      })
+      
+      it("Get stats", async () => {
+        let res = await service.getStatsService();
+        console.log("-------- " + res);
+        expect(res).to.be.not.empty;
+ 
+      });
+    });
 
-       
-    })
-
-    describe('Test checkSequenceService', () => {
+    /*describe('Test checkSequenceService', () => {
 
         it('Check sequence ok', () => {
             let sequence = ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]
@@ -56,7 +60,7 @@ describe('Unit test mutant.service', async() => {
             
         })
 
-    });
+    }); */
 
   /* describe("Test saveDataService", () => {
       it("saved", () => {
@@ -79,6 +83,14 @@ describe('Unit test mutant.service', async() => {
 
 });
 
+function beforeAll(arg0: () => Promise<void>) {
+  throw new Error('Function not implemented.');
+}
+
+function afterAll(arg0: () => Promise<void>) {
+  throw new Error('Function not implemented.');
+}
+/*
 describe("Unit test mutant.controller", () => {
 
     it('Test mutant error', (done) => {
@@ -102,7 +114,7 @@ describe("Unit test mutant.controller", () => {
       })
 
   })
-})
+}) */
 
 
 
