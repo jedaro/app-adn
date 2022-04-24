@@ -8,5 +8,6 @@ router.get('/', (req, res) => {
 });
 router.post('/mutant', controller.isMutant);
 router.get('/stats', controller.getStats);
+router.delete('/destroy', controller.destroy);
 
 export = router;

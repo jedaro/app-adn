@@ -16,7 +16,9 @@ export const checkSequenceService = (sequence: Array<String>) => {
       if (checkRow.includes(pattern[j].repeat(4))) {
         ismutant = true;
         log.info("Secuencia mutante horizontal encontrada en: " + checkRow);
+        return;
       }
+      checkRow =  "";
     }
   }
 
@@ -31,7 +33,9 @@ export const checkSequenceService = (sequence: Array<String>) => {
       if (strVertical.includes(pattern[j].repeat(4))) {
         ismutant = true;
         log.info("Secuencia mutante vertical encontrada en: " + strVertical);
+        return;
       }
+      strVertical  =  "";
     }
   }
 
@@ -65,7 +69,6 @@ export const getStatsService = async () => {
     ratio
   };
   let sequences = await Sequence.find({});
-  console.log(JSON.stringify(sequences))
   sequences.forEach((seq) => {
     if (JSON.parse(JSON.stringify(seq)).isMutant) {
       count_mutant_dna++;
@@ -84,6 +87,18 @@ export const getStatsService = async () => {
 
   return res;
 };
+
+export const deleteSequences  = async () => {
+
+  try {
+    await Sequence.deleteMany();
+    return true;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+
 /*
 const getMatrix = (sequence: Array<String>) => {
   let matrix = new Array(6);

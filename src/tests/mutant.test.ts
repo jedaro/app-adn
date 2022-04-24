@@ -38,7 +38,6 @@ describe('Unit test mutant.service', () => {
       
       it("Get stats", async () => {
         let res = await service.getStatsService();
-        console.log("-------- " + res);
         expect(res).to.be.not.empty;
  
       });

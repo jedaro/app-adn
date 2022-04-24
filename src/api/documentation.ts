@@ -8,11 +8,7 @@ const apiDocument = {
         name: 'Jesus Daniel Rodriguez',
         email: 'jdanielrodriguezo@gmail.com',
         url: 'https://linkedin.com/in/jedaro',
-      },
-      license: {
-        name: 'Apache 2.0',
-        url: 'https://www.apache.org/licenses/LICENSE-2.0.html',
-      },
+      }
     },
     servers: [
       {
@@ -69,7 +65,7 @@ const apiDocument = {
           "tags": ["mutant"],
           "summary": "Utiliza esta opción para consultar estadisticas de las secuencias verificadas",
           "description": "Operación que genera un informe de las secuencias analizadas de  mutantes y humanos",
-          "operationId": "check_mutant",
+          "operationId": "get_stats",
           "responses": {
             "200": {
               "description": "En este caso, el código de respuesta es 200 indica estadisticas de las secuencias analizadas",
@@ -83,6 +79,30 @@ const apiDocument = {
             },
             "400": {
               "description": "Bad request"
+            }
+          }
+        }
+      },
+      "/destroy": {
+        delete: {
+          "security": [{ "ApiKeyAuth": []}],
+          "tags": ["mutant"],
+          "summary": "Utiliza esta opción para eliminar todos los registros",
+          "description": "Operación que borra todos los registros de la base de datos",
+          "operationId": "delete_stats",
+          "responses": {
+            "200": {
+              "description": "En este caso, el código de respuesta es 200 indica eliminacion de todos los registros",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ResponseDelete200"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Error eliminacion datos"
             }
           }
         }
@@ -130,6 +150,15 @@ const apiDocument = {
             }
           }
   
+        },
+        "ResponseDelete200":{
+          "type": "object",
+          "properties": {
+            "messsage": {
+              "type": "string",
+              "description": "Mensaje de respuesta eliminación"
+            }
+          }
         },
         "MutantRequest":{
           "type": "array",
