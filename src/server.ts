@@ -5,6 +5,7 @@ import http from 'http';
 import * as dotenv from "dotenv";
 import swaggerUi from 'swagger-ui-express';
 import { apiDocument } from './api/documentation';
+
 require('./db/database')
 
 dotenv.config();

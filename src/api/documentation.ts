@@ -16,7 +16,7 @@ const apiDocument = {
         description: 'Local Server',
       },
       {
-        url: 'https://pivotal-sprite-326117.rj.r.appspot.com/',
+        url: 'https://jedarog-1503.uc.r.appspot.com/',
         description: 'Production Server (Google)',
       },
     ],

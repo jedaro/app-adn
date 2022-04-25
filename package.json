@@ -2,7 +2,7 @@
   "name": "app-adn",
   "version": "1.0.0",
   "description": "API Rest para determinar si una persona es mutante o no, a partir de su secuencia de dna",
-  "main": "src/server.ts",
+  "main": "./src/dist/server.js",
   "scripts": {
     "build-ts": "tsc",
     "build": "npm run build-ts",

@@ -16,9 +16,10 @@ export const checkSequenceService = (sequence: Array<String>) => {
       if (checkRow.includes(pattern[j].repeat(4))) {
         ismutant = true;
         log.info("Secuencia mutante horizontal encontrada en: " + checkRow);
-        return;
+        checkRow = "";
+        return ismutant;
       }
-      checkRow =  "";
+
     }
   }
 
@@ -33,15 +34,13 @@ export const checkSequenceService = (sequence: Array<String>) => {
       if (strVertical.includes(pattern[j].repeat(4))) {
         ismutant = true;
         log.info("Secuencia mutante vertical encontrada en: " + strVertical);
-        return;
+        strVertical  =  "";
+        return ismutant;
       }
-      strVertical  =  "";
+      
     }
   }
 
-
-
-  return ismutant;
 };
 
 // Save to dabatabase
